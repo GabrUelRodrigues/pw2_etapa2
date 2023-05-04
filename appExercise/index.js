@@ -1,23 +1,18 @@
 const express = require("express")
-const path = require("path")
-
 const app = express()
 const port = 3000
-const basePath = path.join(__dirname, "templates")
+const path = require("path")
+
+const basePath = path.join(__dirname,"templates")
 
 app.use(
     express.urlencoded({
-        extended : true
+        extended: true,
     })
 )
-
 app.use(express.json())
 
-app.listen(port, () => {
-    console.log(`Servidor rodando na porta: ${port}.`)
-})
-
-app.get("/", (req, res) => {
+app.get("/", (req, res)=>{
     res.sendFile(`${basePath}/index.html`)
 })
 
@@ -25,10 +20,32 @@ app.get("/users/add", (req, res) => {
     res.sendFile(`${basePath}/userForm.html`)
 })
 
-app.post("/users/save", (req, res) => {
+app.get("/list/open", (req, res)=>{
+    res.sendFile(`${basePath}/listForm.html`)
+})
+
+app.post("/list/resolve", (req, res) => {
+    let numero1 = req.body.numero1
+    let numero2 = req.body.numero2
+
+    if((numero1 + numero2) % 2 == 0){
+        res.sendFile(`${basePath}/userForm.html`)
+
+    }
+    else{
+        res.sendFile(`${basePath}/index.html`)
+
+    }
+})
+
+app.post("/users/save", (req, res) =>{
     let name = req.body.name
     let age = req.body.age
 
-    console.log(`Nome do Usuário: ${name}, Idade: ${age}.`)
+    console.log(`Nome do Usuario: ${name}, Idade: ${age}`)
     res.sendFile(`${basePath}/index.html`)
+})
+
+app.listen(port, () => {
+    console.log(`Servidor Rodando na porta: ${port}`)
 })

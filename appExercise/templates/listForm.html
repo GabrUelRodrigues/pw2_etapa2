@@ -8,13 +8,17 @@
 </head>
 <body>
     <h1>Adição de Usuário</h1>
-    <form action="/users/save" method="post">
+    <form action="/list/resolve" method="post">
         <div>
-            <input type="text" name="name" id="name" placeholder="Digite seu nome">
+            <input type="text" name="numero1" id="numero1" placeholder="Entre com numero 1">
         </div>
         <div>
-            <input type="text" name="age" id="age" placeholder="Digite sua idade">
+            <input type="text" name="numero2" id="numero2" placeholder="Entre com numero 2">
         </div>
+        <p>
+            Se a soma dos numeros for par, você será direcionado para o cadastro de usuário. Já se for 
+            impar, será enviado para index.
+        </p>
         <div>
             <input type="submit" value="Cadastrar">
         </div>
