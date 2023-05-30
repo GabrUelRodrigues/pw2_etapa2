@@ -14,3 +14,11 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 //#endregion
 
+const conn = require("./db/conn")
+const Thought = require("./models/Thought")
+const User = require("./models/User")
+
+conn.sync().then(() => {
+    app.listen(3000)
+
+}).catch((error) => console.error(error))
